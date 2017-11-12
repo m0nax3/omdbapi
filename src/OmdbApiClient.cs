@@ -78,6 +78,10 @@ namespace OMDbSharp
                     JToken ok;
                     if (jObject.TryGetValue("Response", out ok))
                     {
+                        if (ok.Value<bool>() == false)
+                        {
+                            return false;
+                        }
                         result = jObject;
                         return true;
                     }
