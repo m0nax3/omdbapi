@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -109,69 +106,37 @@ namespace OMDbSharp
 
         public ItemList GetItemList(string query)
         {
-            ItemList itemList =  Request<ItemList>("s=" + query);
-            return itemList;
+            return Request<ItemList>("s=" + query);
         }
 
         public Season GetSeriesSeason(string id, int season)
         {
             ThrowIfInvalidId(id);
-            Season seriesSeason =  Request<Season>("i=" + id + "&Season=" + season);
-            return seriesSeason;
+            return Request<Season>("i=" + id + "&Season=" + season);
         }
 
         public SeasonDetails GetSeriesSeasonDetails(string id, int season)
         {
             ThrowIfInvalidId(id);
-            SeasonDetails seasonDetails =  Request<SeasonDetails>("i=" + id + "&Season=" + season + "&detail=full");
-            return seasonDetails;
+            return Request<SeasonDetails>("i=" + id + "&Season=" + season + "&detail=full");
         }
 
         public Episode GetSeriesEpisode(string id, int season, int episode)
         {
             ThrowIfInvalidId(id);
-            Episode seriesEpisode =  Request<Episode>("i=" + id + "&Season=" + season + "&Episode=" + episode);
-            return seriesEpisode;
+            return Request<Episode>("i=" + id + "&Season=" + season + "&Episode=" + episode);
         }
 
         public EpisodeDetails GetSeriesEpisodeDetails(string id, int season, int episode)
         {
             ThrowIfInvalidId(id);
-            EpisodeDetails episodeDetails =  Request<EpisodeDetails>("i=" + id + "&Season=" + season + "&Episode=" + episode + "&detail=full");
-            return episodeDetails;
+            return Request<EpisodeDetails>("i=" + id + "&Season=" + season + "&Episode=" + episode + "&detail=full");
         }
 
         private static void ThrowIfInvalidId(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
             if (!id.StartsWith("tt")) throw new ArgumentException("Wrong id, must begin with 'tt'");
-        }
-    }
-
-    public interface IApiWebClient
-    {
-        string DownloadString(string url);
-    }
-
-    internal class ApiWebClient : IApiWebClient
-    {
-        readonly HttpClient _client;
-
-        public ApiWebClient()
-        {
-            _client = new HttpClient(new HttpClientHandler(){AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate});
-
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Bot;admin@torrent-sensor.org)");
-            _client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip, deflate");
-        }
-
-        public string DownloadString(string url)
-        {
-            var tsk = _client.GetStringAsync(url);
-            tsk.Wait();
-            return tsk.Result;
         }
     }
 }
