@@ -182,6 +182,8 @@ namespace OmdbApi
                     {
                         if (jObject.TryGetValue("Error", out var tokenError))
                         {
+                            if (tokenError.ToString() == "Error getting data.")
+                                return false;
                             throw new OmdbAPiException(tokenError.ToString());
                         }
                         else

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using OmdbApi;
 
 namespace Sample
@@ -13,7 +14,9 @@ namespace Sample
 
             var goodAnswer = api.GetItemByID("tt0111161");
 
-            Console.WriteLine(goodAnswer.Title);
+            Debug.Assert(goodAnswer != null);
+
+            Console.WriteLine("OK:" + goodAnswer.Title);
 
             try
             {
@@ -21,8 +24,12 @@ namespace Sample
             }
             catch (OmdbAPiException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
+
+            var noData = api.GetItemByID("tt9999999");
+
+            Debug.Assert(noData == null);
 
             Console.ReadKey();
         }
