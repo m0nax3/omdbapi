@@ -1,4 +1,4 @@
-﻿namespace OMDbSharp
+﻿namespace OmdbApi.Model
 {
     public class SeasonEpisode
     {

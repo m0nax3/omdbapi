@@ -1,6 +1,6 @@
-﻿namespace OMDbSharp
+﻿namespace OmdbApi.Model
 {
-    public class ItemList
+    public class OmdbInfoList
     {
         public Search[] Search { get; set; }
     }

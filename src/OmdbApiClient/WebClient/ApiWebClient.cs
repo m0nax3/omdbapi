@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace OMDbSharp
+namespace OmdbApi.WebClient
 {
     internal class ApiWebClient : IApiWebClient
     {
@@ -23,6 +23,11 @@ namespace OMDbSharp
             var tsk = _client.GetStringAsync(url);
             tsk.Wait();
             return tsk.Result;
+        }
+
+        public void Dispose()
+        {
+            _client?.Dispose();
         }
     }
 }

@@ -1,5 +1,5 @@
 echo ---------BUILD-----------------
-cd src
+cd src/OmdbApiClient
 dotnet.exe build -v n -c release
 cd ..
 echo ---------END-------------------

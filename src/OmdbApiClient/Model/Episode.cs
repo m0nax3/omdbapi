@@ -1,6 +1,6 @@
-﻿namespace OMDbSharp
+﻿namespace OmdbApi.Model
 {
-    public class Item
+    public class Episode
     {
         public string Title { get; set; }
 
@@ -9,6 +9,10 @@
         public string Rated { get; set; }
 
         public string Released { get; set; }
+
+        public string Season { get; set; }
+
+        public string EpisodeNumber { get; set; }
 
         public string Runtime { get; set; }
 
@@ -38,37 +42,9 @@
 
         public string imdbID { get; set; }
 
+        public string seriesID { get; set; }
+
         public string Type { get; set; }
-
-        public string tomatoMeter { get; set; }
-
-        public string tomatoImage { get; set; }
-
-        public string tomatoRating { get; set; }
-
-        public string tomatoReviews { get; set; }
-
-        public string tomatoFresh { get; set; }
-
-        public string tomatoRotten { get; set; }
-
-        public string tomatoConsensus { get; set; }
-
-        public string tomatoUserMeter { get; set; }
-
-        public string tomatoUserRating { get; set; }
-
-        public string tomatoUserReviews { get; set; }
-
-        public string tomatoURL { get; set; }
-
-        public string DVD { get; set; }
-
-        public string BoxOffice { get; set; }
-
-        public string Production { get; set; }
-
-        public string Website { get; set; }
 
         public string Response { get; set; }
     }
